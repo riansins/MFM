@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -20,7 +21,8 @@ import javax.swing.event.ChangeListener;
 import CHILD.Debug.D;
 import CHILD.FormatFilter.ChVocaPracticeFF;
 import CHILD.FormatFilter.IFileFormatFilter;
-import CHILD.TTSplayer.NaverDicTTSPlayer;
+import CHILD.TTSPlayer.NaverDicTTSPlayer;
+import CHILD.TTSPlayer.TTSPlayerException;
 
 public class MainView extends IBassView
 {
@@ -37,8 +39,6 @@ public class MainView extends IBassView
 	{
 		InitListeners();
 		InitComponent();
-		NaverDicTTSPlayer ttsp = new NaverDicTTSPlayer(null);
-		ttsp.PlayAudio("C:\\Users\\Public\\Music\\Sample Music\\Sleep Away.mp3");
 	}
 
 	private void PrepareTTS()
@@ -48,7 +48,15 @@ public class MainView extends IBassView
 		{
 			_CurrentLoadedFF = cvp;
 			// 작업 계속
-
+			try
+			{
+				NaverDicTTSPlayer ndtp = new NaverDicTTSPlayer(_CurrentLoadedFF);
+				ndtp.TTSPlay(0);
+			}
+			catch (IOException | TTSPlayerException e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 

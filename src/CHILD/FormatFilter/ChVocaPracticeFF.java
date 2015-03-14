@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import CHILD.Debug.D;
 import CHILD.File.TextIS;
 
 public class ChVocaPracticeFF extends IFileFormatFilter
@@ -17,19 +18,19 @@ public class ChVocaPracticeFF extends IFileFormatFilter
 		TextIS tis = new TextIS();
 		String text = tis.GetText(path);
 
-		if (text == null || text == "")
+		if (text == null || text.isEmpty())
 			return false;
 
-		Pattern patten = Pattern.compile("∙([一-龠，。、？]+)");
+		Pattern patten = Pattern.compile("∙([一-龠，。、？《》!]+)");
 		Matcher matches = patten.matcher(text);
 
 		while (matches.find())
 		{
-			String s = matches.group();
-			result.add(s);
+			result.add(matches.group(1));
 		}
 		_Data = result;
 
+		D.Log("[" + file.getName() + "] quered arraylist data count : " + _Data.size());
 		if (_Data.size() == 0)
 			return false;
 		else

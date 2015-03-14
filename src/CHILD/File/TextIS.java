@@ -31,8 +31,6 @@ public class TextIS
 				content.append(temp);
 				content.append('\n');
 			}
-			System.out.println("================== 파일 내용 출력 ==================");
-			System.out.println(content);
 		}
 		catch (FileNotFoundException e)
 		{

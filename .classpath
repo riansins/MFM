@@ -7,5 +7,8 @@
 	<classpathentry exported="true" kind="lib" path="U:/dev/swing_lib/httpcomponents-client-4.4/lib/httpcore-4.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="U:/dev/swing_lib/poi-3.0-rc4/src/contrib/poi-ruby/poi-2.0-final-20040126.jar"/>
 	<classpathentry exported="true" kind="lib" path="U:/dev/swing_lib/Quaqua/dist/quaqua.jar"/>
+	<classpathentry exported="true" kind="lib" path="U:/dev/swing_lib/java-audio-player-v.0.1.1.2/lib/jl1.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="U:/dev/swing_lib/java-audio-player-v.0.1.1.1/JavaFXMediaPlayer.jar"/>
+	<classpathentry exported="true" kind="lib" path="U:/dev/swing_lib/java-audio-player-v.0.1.1.1/JavaMediaPlayer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

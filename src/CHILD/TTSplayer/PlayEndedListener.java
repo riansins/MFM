@@ -1,4 +1,4 @@
-package CHILD.TTSplayer;
+package CHILD.TTSPlayer;
 
 public abstract class PlayEndedListener
 {

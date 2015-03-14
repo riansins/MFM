@@ -1,18 +1,12 @@
-package CHILD.TTSplayer;
+package CHILD.TTSPlayer;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import CHILD.Enum.TTSPlayerState;
+import maryb.player.Player;
+import maryb.player.PlayerEventListener;
+import CHILD.Debug.D;
+import CHILD.Enum.TTS_ERROR;
 import CHILD.FormatFilter.IFileFormatFilter;
 import CHILD.HttpProtocol.HttpProtocol;
 
@@ -21,19 +15,31 @@ public abstract class ITTSPlayer extends HttpProtocol
 	protected IFileFormatFilter _FFilter;
 	protected int _trackIdx = 0;
 	protected PlayEndedListener _PlayEndedListener;
+	protected File _TempFile;
+	protected Player _Player = new Player();
 
-	public ITTSPlayer(IFileFormatFilter fff)
+	protected void InitTempFolder() throws IOException
+	{
+		_TempFile = File.createTempFile("mfm_temp", Long.toString(System.nanoTime()));
+		_TempFile.delete();
+		_TempFile.mkdir();
+	}
+
+	public ITTSPlayer(IFileFormatFilter fff) throws IOException
 	{
 		_FFilter = fff;
+		InitTempFolder();
 	}
 
 	public void PlayAudio(String url)
 	{
+		_Player.setSourceLocation(url);
+		_Player.play();
 	}
 
-	public abstract TTSPlayerState NextTTSPlay();
+	public abstract void NextTTSPlay() throws TTSPlayerException;
 
-	public abstract TTSPlayerState TTSPlay(int idx);
+	public abstract void TTSPlay(int idx) throws TTSPlayerException;
 
 	public void AddPlayEndedListener(PlayEndedListener listener)
 	{
